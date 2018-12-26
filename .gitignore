@@ -1,3 +1,4 @@
+#platformio files
 .pio
 .pioenvs
 .piolibdeps
@@ -35,4 +36,3 @@
 *.exe
 *.out
 *.app
->>>>>>> 9e6834953d0460c6931184a973fd02ec5f639015
