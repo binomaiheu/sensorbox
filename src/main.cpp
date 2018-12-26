@@ -1,23 +1,31 @@
 #include <Arduino.h>
 
-#include "strfun.h"
-#include "cactus_io_SHT15.h"
+// Include project libraries in the lib folder
+#include <strfun.h>
 
-#define SHT15_dataPin   2
-#define SHT15_clockPin  3
+// Inclde project headers
+#include "sensors.h"
 
-SHT15 sht(SHT15_dataPin, SHT15_clockPin);
+float pm10, pm25;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   delay(1000);
   Serial.println( "Booting sensorbox..." ); 
+  String info = sds.get_info();
+  Serial.println( info );
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  delay(3000);
+  delay(10000);
   sht.readSensor();
   Serial.println( String("Temp: ") + Float2String(sht.getTemperature_C()) + String(", Humidity: ") + Float2String(sht.getHumidity()) );
+
+
+
+  sds.get_values( pm10, pm25 );
+  Serial.println( String("PM25: ") + Float2String(pm25));
+  Serial.println( String("PM10: ") + Float2String(pm10));
 }
