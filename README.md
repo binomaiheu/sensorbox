@@ -14,8 +14,7 @@ In the local lib folder i've included
 * As well as my own attempt of creating a wrapper arount the sds011 readout. 
 * And some helper routines
 
-
-
+The public thingspeak channel is : https://thingspeak.com/channels/662834
 
 
 Enjoy !
