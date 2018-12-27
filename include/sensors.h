@@ -11,7 +11,7 @@ SHT15 sht(SHT15_dataPin, SHT15_clockPin);
 
 
 // Define the SDS011 sensor and it's pins...
-#define SDS011_RX 12
-#define SDS011_TX 13
+#define SDS011_RX 5
+#define SDS011_TX 6
 
 sds011 sds( SDS011_RX, SDS011_TX );
