@@ -11,7 +11,7 @@
 #include "sensors.h"
 //#include "memcheck.h"
 
-//const char version_info[] = "v0.1";
+//const char version_info[] = "v0.2";
 //#define DEBUG_OUTPUT
 
 #define INTERVAL_READOUT  5000
