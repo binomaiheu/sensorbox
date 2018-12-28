@@ -27,7 +27,7 @@ public:
         SDS011_WORK  = 0x01
     };
 
-    String get_info( void );
+    //void get_info( char* msg );
     void get_values( float& pm10, float& pm25 );
 
 private:

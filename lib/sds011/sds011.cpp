@@ -120,7 +120,7 @@ uint8_t sds011::read( uint8_t mode, uint8_t* buffer, uint8_t len ) {
                 if ( value == ( checksum % 256 ) ) {
                     checksum_ok = true;
                 } else {
-                    Serial.println( "checksum error in read()");
+                    Serial.println( F("checksum error in read()"));
                     curr_len = -1;
                     checksum = 0x0;
                     n = 0;
@@ -144,9 +144,9 @@ uint8_t sds011::read( uint8_t mode, uint8_t* buffer, uint8_t len ) {
             checksum_ok = false;
             retval = n;         
 
-            Serial.print("Read data:" );
-            for ( uint8_t i = 0; i < n ; i++ ) Serial.print(String(" ") + String(buffer[i], HEX));
-            Serial.println(".");  
+            //Serial.print("Read data:" );
+            //for ( uint8_t i = 0; i < n ; i++ ) { Serial.print(" "); Serial.print(buffer[i], HEX); }
+            //Serial.println(".");  
         }
 
     }
@@ -154,41 +154,28 @@ uint8_t sds011::read( uint8_t mode, uint8_t* buffer, uint8_t len ) {
     return retval;
 }
 
-String sds011::get_info( void )
-{
-    String version_date, device_id;
-    String s = "";
-    uint8_t buffer[6]; 
+/*
+void sds011::get_info( char* msg )
+{    
     
+    uint8_t buffer[6]; 
     set_state( sds011::SDS011_WORK );    
     delay(100);
 
     uint8_t send_buf[1] = {0x07};    
     send_cmd( send_buf, 1 );
     delay(500);
-    uint8_t n = read( 0x07, buffer, 6 );    
-    Serial.println(String(n));
+    uint8_t n = read( 0x07, buffer, 6 );
 
-    if ( n < 6 ) {
-        Serial.println( "Failed to read version info..." );
-    } else {
-        Serial.println( String("Decoding version info...") );
-        version_date = String(buffer[1]) + "-" + String(buffer[2]) + "-" + String(buffer[3] );
-        if ( buffer[4] < 0x10 )
-            device_id = "0x0" + String(buffer[4], HEX);
-        else 
-            device_id = "0x" + String(buffer[4], HEX);
-
-        if ( buffer[5] < 0x10 )
-            device_id += "0" + String(buffer[5], HEX);
-        else 
-            device_id += String(buffer[5], HEX);
+    if ( n < 6 ) {        
+        sprintf( msg, "unknown" );
+    } else {        
+        sprintf( msg, "%04d-%02d-%02d, chipId: 0x%04X", 2000+buffer[1], buffer[2], buffer[3], (buffer[4]<<8)+buffer[5] );
     }
-
-    s = String("[") + device_id + String("] - ") + version_date;
-
-    return s;
+    
+    return;
 }
+*/
 
 void sds011::set_report_mode( sds011::report_mode mode )
 {
@@ -221,6 +208,9 @@ void sds011::get_values( float& pm10, float& pm25 )
 {
     int pm10_serial;
     int pm25_serial;
+
+    pm10 = -9999.;
+    pm25 = -9999.;
 
     uint8_t buffer[6];
     query_data( buffer, 6 );   
