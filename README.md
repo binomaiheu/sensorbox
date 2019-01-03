@@ -1,7 +1,7 @@
 # sensorbox
 Code for my own gardenshed sensorbox for arduino uno in combination with an ethernet shield. 
 
-![foto](https://raw.githubusercontent.com/binomaiheu/sensorbox/master/docs/IMG_20181228_175019.jpg | width=300)
+![foto](https://raw.githubusercontent.com/binomaiheu/sensorbox/master/docs/IMG_20181228_175019.jpg)
 
 
 Currently it includes :
